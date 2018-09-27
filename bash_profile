@@ -1,5 +1,7 @@
 # Get the standard environment variabls setup first of all
 
+export BASH_PROFILE_LOADED="true"
+
 if [ -f ~/.bash_env ]; then
     source ~/.bash_env
 fi
