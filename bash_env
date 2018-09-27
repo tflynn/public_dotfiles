@@ -1,0 +1,6 @@
+# Only put environment variables in this file
+
+# Bootstrap location for common startup system
+export STARTUP_DIR="${HOME}/.startup"
+export DOTFILES=${STARTUP_DIR}/dotfiles
+export MYBIN=${STARTUP_DIR}/mybin
