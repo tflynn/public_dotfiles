@@ -12,6 +12,25 @@ if [ "$exit_code" == "1" ]; then
 	eval "$(rbenv init -)"
 fi
 
+function link_bin_file() {
+    source_file=$1
+    full_source_file="${STARTUP_DIR}/mybin/${source_file}"
+    full_target_file="${HOME}/bin/${source_file}"
+    if [ -e ${full_target_file} ]; then
+        rm -f ${full_target_file}
+    fi
+    if ! [ -e ${full_target_file} ]; then
+        ln -s ${full_source_file} ${full_target_file}
+    fi
+}
+
+function link_bin_files() {
+    for bin_file in $(ls -1 "$STARTUP_DIR/mybin")
+    do
+        link_bin_file ${bin_file}
+    done
+}
+
 function update_startup() {
 	startup_repo_dirs=('bash-it' 'my-bash-it' 'dotfiles' 'mybin')
 	for repo_dir in ${startup_repo_dirs[@]}
@@ -23,4 +42,6 @@ function update_startup() {
 			popd
 		fi
 	done
+
+	link_bin_files
 }
